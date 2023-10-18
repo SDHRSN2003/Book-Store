@@ -11,6 +11,44 @@ app.get('/',(request,response) =>{
     return response.status(234).send('Hello world')
 });
 
+app.get('/books', async(request,response)=>{
+    try{
+        const books = await Book.find({});
+        response.status(200).json(books); 
+    }catch(error){
+        console.log(error.message)
+        response.status(500).send({message: error.message});
+    }
+});
+
+app.get('/books/:id', async(request,response)=>{
+    try{
+        const bookId = request.params.id;
+        const book = await Book.findById(bookId);
+        return response.status(200).json(book);
+    }catch(error){
+        console.log(error.message);
+        return response.status(500).send({message: error.message});
+    }
+});
+
+app.delete('/books/:id',async(request,response)=>{
+        try{
+            const bookid = request.params.id;
+            const book = await Book.findById(bookid);
+            if(!book)
+            {
+                response.status(500).send({messsage: 'Book not found'});
+            } else {
+                await Book.deleteOne({_id : bookid});
+                response.status(200).send({message: 'Book deleted successfully'});
+            }
+        }catch(error){
+            console.log(error.message);
+            return response.status(500).send({message: error.message});
+        }
+});
+
 app.post('/books/create',async(request,response) =>{
     try{
         if(!request.body.title ||
@@ -34,15 +72,28 @@ app.post('/books/create',async(request,response) =>{
         return response.status(500).send({message: error.message})
     }
 
-})
+});
 
-app.get('/books', async(request,response)=>{
+app.put('/books/:id/update',async(request,response)=>{
     try{
-        const books = await Book.find({});
-        response.status(200).json(books); 
+        const bookid = request.params.id;
+        const book = await Book.findById(bookid);
+        if(!book)
+        {
+            return response.status(404).send({message: 'The book is not found'});
+        }
+        else{
+            const {title,author,publishyear} = request.body;
+            book.title = title;
+            book.author = author;
+            book.publishyear = publishyear;
+            await Book.updateOne({_id:bookid},book);
+            return response.status(200).send({message: 'The book is updated'});
+
+        }
     }catch(error){
-        console.log(error.message)
-        response.status(500).send({message: error.message});
+        console.log(error.message);
+        return response.status(500).send({message: error.message});
     }
 })
 
