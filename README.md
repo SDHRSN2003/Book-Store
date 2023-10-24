@@ -48,6 +48,6 @@
 
      The project mainly focuses on storing various Books and the information about the various books. The user can perform the operations, as the suitables have been given in the web page. The user are provided the privilege of creating, updating and deleting the book and its information. This web page will be user-friendly and user will not be facing any sort of difficulties.
 
-# HOPE THE PROJECT WILL BE ENJOYABLE...
+# HOPE THIS PROJECT WILL BE ENJOYABLE...
 
 ![Alt text](thankyou.png)
