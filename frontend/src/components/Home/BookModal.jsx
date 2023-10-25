@@ -9,9 +9,8 @@ const BookModal = ({book,onClose}) => {
     >
       <div
       onClick={(event)=> event.stopPropagation()}
-      className="2-[600px] max-w-full h-[400px] bg-white-rounded-xl p-4 flex flex-col relative">
+      className="w-[600px] max-w-full h-[400px] bg-white rounded-xl p-4 flex flex-col relative">
         <AiOutlineClose className="absolute right-6 top-6 text-3xl text-red-600 cursor-pointer" onClick={onClose}/>
-      </div>
       <h2 className="w-fit px-4 py-1 bg-red-300 rounded-lg">
             {book.publishyear}
           </h2>
@@ -31,6 +30,7 @@ const BookModal = ({book,onClose}) => {
             officiis quas sequi doloremque harum reiciendis 
             autem quod quia sunt molestias rerum ex optio necessitatibus.
           </p>
+      </div>
     </div>
   )
 }

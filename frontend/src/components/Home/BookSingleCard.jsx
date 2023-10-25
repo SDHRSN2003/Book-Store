@@ -30,13 +30,13 @@ const BookSingleCard = ({book}) => {
           <div className="flex justify-between books-center gap-x-2 mt-4 p-4">
             <BiShow
             className='text-3xl text-blue-800 hover:text-black cursor-pointer' onClick={()=>setShowModal(true)}/>
-            <Link to = {`/books/details/${book._id}`}>
+            <Link to = {`/books/${book._id}/details`}>
               <BsInfoCircle className="text-2xl text-green-800 hover:text-black"/>
             </Link>
-            <Link to = {`/books/edit/${book._id}`}>
+            <Link to = {`/books/${book._id}/edit`}>
               <AiOutlineEdit className="text-2xl text-yellow-600 hover: text-black"/>
             </Link>
-            <Link to = {`/books/delete/${book._id}`}>
+            <Link to = {`/books/${book._id}/delete`}>
               <MdOutlineDelete className="text-2xl text-red-600 hover:text-black"/>
             </Link>
           </div>
